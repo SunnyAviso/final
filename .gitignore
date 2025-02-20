@@ -1,0 +1,15 @@
+node_modules
+brightdata_proxy_ca
+matched
+similar
+notMatched
+unMatched
+
+coles/data
+woolworths/data
+
+.env
+
+todo.md
+
+pricing
