@@ -24,6 +24,7 @@ function delay(time) {
         console.log(`🔹 API Response from ${url}:`, jsonResponse);
       } catch (error) {
         // console.log(`🔸 Non-JSON response from ${url}`);
+         
       }
     }
   });
