@@ -26,7 +26,7 @@ const getData = async () => {
     try {
       ColesData = JSON.parse(fs.readFileSync(`coles/data/${process.env.FOLDER_DATE}/${mycat}.json`, 'utf8'));
     } catch (error) {
-      console.log('error parsing', mycat, error);
+      console.log('error parsing or file not found:', mycat);
       continue;
     }
     for (const data of ColesData) {

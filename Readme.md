@@ -289,14 +289,14 @@ note: this `testWooly` will have a logs if how many products have an error to be
   ```bash
   node compareProductsTest
   ```
-  note: this `compareProductsTest` will only create the matched data with the product names and all the unmatched data from both C and W to test and once the test is successful if you run the `compareProductsFinal` ensure that you have deleted/clean the folder by the date you have created in you .env.
+  note: this `compareProductsTest` will only create the matched data with the product barcodes and once the test is successful if you run the `compareProductsFinal` ensure that you have deleted/clean the folder by the date you have created in you .env.
 ### 8. Send the matched Products by barcodes and Unmatched product for both C and W websit through the API.
   ```bash
   node compareProductsFinal
   ```
   note: this `compareProductsFinal` will only passed the matched data with the product barcodes.
   
-### 9. Send the matched Products by names or titles with 95% - 100% score through the API.
+### 9. Test the similar matched Products by names or titles with 95% - 100% score through the API.
   ```bash
   node compareProductsSimilarityTest
   ```
