@@ -46,7 +46,7 @@ const getData = async () => {
         for (const data of woolworthsData) {
           const filteredProducts = ColesData.filter((p) => {
             if (p.barcode && data.barcode) {
-              if (p.barcode.toString() === data.barcode.toString()) {
+              if (p.barcode.toString() === data.barcode.toString()) { // to compare products inside one folder
                 return p;
               }
             } else {

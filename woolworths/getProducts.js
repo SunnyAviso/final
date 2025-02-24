@@ -16,7 +16,7 @@ const csvWriter = createArrayCsvWriter({
 
 const getData = async () => {
   console.log('start clean');
-  await cleanUpPrices();
+ // await cleanUpPrices();
   console.log('end clean');
   await dbConnect();
   const a = await Product.find().exec();

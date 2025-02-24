@@ -10,7 +10,7 @@ const cleanUpPrices = async () => {
 
   for (const product of products) {
     const uniquePrices = new Map();
-
+  const counter = 0;
     // Remove duplicates: Keep the first occurrence of each state
     for (const price of product.prices) {
       if (price !== null && price && price.state !== null) {
@@ -25,7 +25,8 @@ const cleanUpPrices = async () => {
 
     // Save the cleaned product back to the database
     await product.save();
-    console.log(`Cleaned duplicate prices for Product ID: ${product.retailer_product_id}`);
+    console.log(counter` Cleaned duplicate prices for Product ID: ${product.retailer_product_id}`);
+    counter = counter + 1;
   }
 
   console.log('Finished cleaning up all products.');

@@ -39,9 +39,9 @@ const userAgents = [
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
 ];
 
-// const mylocation = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
+const mylocation = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
 // const mylocation = ["nsw", "vic", "qld", "wa"];
-const mylocation = [ "qld", "wa", "sa", "tas", "act", "nt"];
+// const mylocation = [ "qld", "wa", "sa", "tas", "act", "nt"];
 
 const getPrices = (location, priceInCents, priceInCentsPerUnits, unit) => {
   const prices = [];
@@ -121,17 +121,17 @@ const WOOLWORTHS_API_ENDPOINT = "https://www.woolworths.com.au/apis/ui/browse/ca
 const CATEGORIES = [
   // { id: '1_717A94B', name: 'Baby', url: '/shop/browse/baby', location: '/shop/browse/baby' },
   // { id: '1_DEB537E', name: 'Bakery', url: '/shop/browse/bakery', location: '/shop/browse/bakery' },
-  // { id: '1_6E4F4E4', name: 'Dairy, Eggs & Fridge', url: '/shop/browse/dairy-eggs-fridge', location: '/shop/browse/dairy-eggs-fridge' },
+  { id: '1_6E4F4E4', name: 'Dairy, Eggs & Fridge', url: '/shop/browse/dairy-eggs-fridge', location: '/shop/browse/dairy-eggs-fridge' },
   // { id: '1_3151F6F', name: 'Deli & Chilled Meats', url: '/shop/browse/deli-chilled-meals', location: '/shop/browse/deli-chilled-meals' },
   // { id: '1_5AF3A0A', name: 'Drinks', url: '/shop/browse/drinks', location: '/shop/browse/drinks' },
   // { id: '1_ACA2FC2', name: 'Freezer', url: '/shop/browse/freezer', location: '/shop/browse/freezer' },
   // { id: '1-E5BEE36E', name: 'Fruit & Veg', url: '/shop/browse/fruit-veg', location: '/shop/browse/fruit-veg' },
-  { id: '1_8D61DD6', name: 'Beauty', url: '/shop/browse/beauty-personal-care', location: '/shop/browse/beauty-personal-care' },
-  { id: '1_894D0A8', name: 'Personal Care', url: '/shop/browse/personal-care', location: '/shop/browse/personal-care' },
+  // { id: '1_8D61DD6', name: 'Beauty', url: '/shop/browse/beauty-personal-care', location: '/shop/browse/beauty-personal-care' },
+  // { id: '1_894D0A8', name: 'Personal Care', url: '/shop/browse/personal-care', location: '/shop/browse/personal-care' },
   // { id: '1_9851658', name: 'Health & Wellness', url: '/shop/browse/health-wellness', location: '/shop/browse/health-wellness' },
   // { id: '1_D5A2236', name: 'Poultry, Meat & Seafood', url: '/shop/browse/poultry-meat-seafood', location: '/shop/browse/poultry-meat-seafood' },
   // { id: '1_2432B58', name: 'Household', url: '/shop/browse/cleaning-maintenance', location: '/shop/browse/cleaning-maintenance' },
-  // { id: '1_39FD49C', name: 'Pantry', url: '/shop/browse/pantry', location: '/shop/browse/pantry' },
+  //{ id: '1_39FD49C', name: 'Pantry', url: '/shop/browse/pantry', location: '/shop/browse/pantry' },
   // { id: '1_61D6FEB', name: 'Pet', url: '/shop/browse/pet', location: '/shop/browse/pet' },
   // { id: '1_DEA3ED5', name: 'Home & Lifestyle', url: '/shop/browse/home-lifestyle', location: '/shop/browse/home-lifestyle' },
   // { id: '1_717445A', name: 'Snacks & Confectionery', url: '/shop/browse/snacks-confectionery', location: '/shop/browse/snacks-confectionery' },
@@ -351,7 +351,7 @@ const scrapeURL = async (page, request, myloc) => {
 
   const products = res.Bundles.map((bundle) => {
     const product = bundle.Products[0];
-
+console.log('API Bundle', product);
     const location = myloc;
     const inputString = product.CupMeasure || "";
 
@@ -366,7 +366,7 @@ const scrapeURL = async (page, request, myloc) => {
     return {
       name: product.DisplayName,
       discounted_from: product.WasPrice,
-      image_url: product.DetailsImagePaths[0],
+      image_url: product.DetailsImagePaths[0].replace("cdn1", "cdn0"),
       shop: "Woolworths",
       source_url: `https://www.woolworths.com.au/shop/productdetails/${product.Stockcode}/${product.UrlFriendlyName}`,
       retailer_product_id: product.Stockcode,
@@ -374,7 +374,7 @@ const scrapeURL = async (page, request, myloc) => {
       name: product.DisplayName,
       realName: product.name,
       isNew: product.IsNew,
-      weight: product.CupMeasure,
+      weight: product.PackageSize, //CupMeasure,
       category: product.AdditionalAttributes.piesdepartmentnamesjson,
       subCategory: product.AdditionalAttributes.piescategorynamesjson,
       extensionCategory: product.AdditionalAttributes.piessubcategorynamesjson,
